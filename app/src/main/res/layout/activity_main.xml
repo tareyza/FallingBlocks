@@ -21,6 +21,7 @@
 
     <Button
         android:text="Play"
+        android:onClick="launchGameActivity"
         android:textSize="@dimen/normal_text"
         android:background="@color/white"
         android:gravity="center"
