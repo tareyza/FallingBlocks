@@ -1,10 +1,22 @@
 package com.jjapps.fallingblocks;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 public class Game extends ActionBarActivity {
@@ -15,8 +27,24 @@ public class Game extends ActionBarActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_game);
 
-        getSupportFragmentManager().beginTransaction().show(getSupportFragmentManager().findFragmentById(R.id.pause_fragment)).commit();
-
+        FragmentManager fm = getFragmentManager();
+        addShowHideListener(R.id.button, fm.findFragmentById(R.id.pause_fragment));
+    }
+   public void addShowHideListener(int buttonId, final Fragment fragment) {
+        final Button button = (Button)findViewById(buttonId);
+        button.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                if (fragment.isHidden()) {
+                    ft.show(fragment);
+                    button.setText("Hide");
+                } else {
+                    ft.hide(fragment);
+                    button.setText("Show");
+                }
+                ft.commit();
+            }
+        });
     }
 
     @Override

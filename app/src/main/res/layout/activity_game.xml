@@ -18,4 +18,7 @@
         android:background="@color/white"
         android:text="HELLO SIENEN LAND more random text to fill up stuff to make a background so i can test the translucent work or notte" />
 
+    <Button android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
