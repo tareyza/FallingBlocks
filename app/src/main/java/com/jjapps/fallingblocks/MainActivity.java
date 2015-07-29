@@ -17,17 +17,10 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void launchGameActivity(View view){
+    public void launchGameActivity(View view) {
         Intent intent = new Intent(this, Game.class);
         startActivity(intent);
-
     }
-
-
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

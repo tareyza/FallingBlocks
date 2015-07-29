@@ -7,11 +7,13 @@ import android.graphics.drawable.ShapeDrawable;
  */
 public interface ShapeFactory {
 
-    FallingShape getRectangle(float width, float height);
+    FallingShape getRectangle();
 
-    FallingShape getTriangle(float width, float height);
+    FallingShape getTriangle();
 
-    FallingShape getOval(float width, float height);
+    FallingShape getOval();
 
-    FallingShape getShapeByName(String shapeName, float width, float height);
+    FallingShape getShapeByName(String shapeName);
+
+
 }
