@@ -2,8 +2,14 @@ package com.jjapps.fallingblocks;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
@@ -19,57 +25,75 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Game extends ActionBarActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    private static final String[] names = {"rect", "oval", "tri"};
+    private List<FallingShape> shapes = new ArrayList<>();
+    private ShapeFactory shapeFactory;
+    private View view;
+    private Handler clock;
+    private int shapeCounter = 0;
+
+    private int period = 50;
+
+    Runnable game = new Runnable(){
+        @Override public void run(){
+            update();
+            clock.postDelayed(this, period);
+        }
+    };
+
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        setContentView(R.layout.activity_game);
-
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.hide(fm.findFragmentById(R.id.pause_fragment));
-        addShowHideListener(R.id.game_layout, fm.findFragmentById(R.id.pause_fragment));
-    }
-   public void addShowHideListener(int viewId, final Fragment fragment) {
-        final View view = findViewById(viewId);
-        view.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent e) {
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                if (fragment.isHidden()) {
-                    ft.show(fragment);
-                    System.out.println("fragment was shown");
-                } else {
-                    ft.hide(fragment);
-                    System.out.println("fragment hidden");
+        view = new View(this.getApplicationContext()){
+            @Override public void onDraw(Canvas canvas){
+                for(FallingShape shape : shapes){
+                    shape.render(canvas);
                 }
-                ft.commit();
-                return true;
             }
-        });
+        };
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        shapeFactory = new DefaultShapeFactory(size.x, size.y);
+        setContentView(view);
+
+        shapes.clear();
+
+        clock = new Handler();
+
+        start();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_game, menu);
-        return true;
+    void start() {
+        game.run();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+    void stop() {
+        clock.removeCallbacks(game);
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void update(){
+        ++shapeCounter;
+        if(shapeCounter == 10){
+            shapeCounter = 0;
+            FallingShape shape = shapeFactory.getShapeByName(names[(int)(Math.random() * 3)]);
+            shapes.add(shape);
+        }
+        view.invalidate();
     }
 }

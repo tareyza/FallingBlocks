@@ -13,6 +13,7 @@ import android.graphics.RectF;
 public class FallingShape {
 
     private float x, y, width, height, rotation;
+    private Paint paint;
     private Path path;
 
     /**
@@ -55,6 +56,10 @@ public class FallingShape {
         return this.rotation;
     }
 
+    public Paint getPaint() {
+        return paint;
+    }
+
     public void setLocation(int x, int y){
         Matrix translate = new Matrix();
         translate.setTranslate(x - this.x, y - this.y);
@@ -65,7 +70,7 @@ public class FallingShape {
 
     public void setDimension(int width, int height){
         Matrix scale = new Matrix();
-        scale.setScale(width/this.width, height/this.height);
+        scale.setScale(width / this.width, height / this.height);
         path.transform(scale);
         this.width = width;
         this.height = height;
@@ -97,11 +102,15 @@ public class FallingShape {
         this.rotation = 0;
     }
 
+    public void setPaint(Paint paint) {
+        this.paint = paint;
+    }
+
     /**
      * Create a representation of this shape on the given canvas.
      * @param canvas the canvas on which to draw this shape
      */
-    public void render(Canvas canvas, Paint paint){
-        canvas.drawPath(this.path, paint);
+    public void render(Canvas canvas){
+        canvas.drawPath(this.path, this.paint);
     }
 }
