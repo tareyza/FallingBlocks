@@ -7,19 +7,18 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.jjapps.fallingblocks.Game">
 
+    <fragment android:name="com.jjapps.fallingblocks.PlayFragment"
+        android:id="@+id/play_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_pause">
+    </fragment>
+
     <fragment android:name="com.jjapps.fallingblocks.PauseFragment"
         android:id="@+id/pause_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_pause">
     </fragment>
 
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:textSize="50dp"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:text="HELLO SIENEN LAND more random text to fill up stuff to make a background so i can test the translucent work or notte" />
-
-    <Button android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 </RelativeLayout>

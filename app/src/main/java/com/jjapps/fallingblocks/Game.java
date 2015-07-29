@@ -21,34 +21,34 @@ import android.widget.TextView;
 
 
 public class Game extends ActionBarActivity {
+    FragmentManager fm = getFragmentManager();
+    FragmentTransaction ft = getFragmentManager().beginTransaction();
+    //Fragment pauseFrag = fm.findFragmentById(R.id.pause_fragment);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         setContentView(R.layout.activity_game);
 
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.hide(fm.findFragmentById(R.id.pause_fragment));
-        addShowHideListener(R.id.game_layout, fm.findFragmentById(R.id.pause_fragment));
-    }
-   public void addShowHideListener(int viewId, final Fragment fragment) {
-        final View view = findViewById(viewId);
-        view.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent e) {
+        //Fragment playFrag = fm.findFragmentById(R.id.play_fragment);
+
+        /*playFrag.getView().findViewById(R.id.play_text).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                pauseFrag = fm.findFragmentById(R.id.pause_fragment);
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                if (fragment.isHidden()) {
-                    ft.show(fragment);
+                if (pauseFrag.isHidden()) {
+                    ft.show(pauseFrag);
                     System.out.println("fragment was shown");
                 } else {
-                    ft.hide(fragment);
+                    ft.hide(pauseFrag);
                     System.out.println("fragment hidden");
                 }
                 ft.commit();
                 return true;
             }
-        });
+        });*/
     }
 
     @Override
@@ -72,4 +72,6 @@ public class Game extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

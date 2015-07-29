@@ -19,26 +19,23 @@ import android.widget.TextView;
  * Use the {@link PauseFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class PauseFragment extends Fragment {
 
     public PauseFragment() {
         // Required empty public constructor
     }
-
+/*
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-/*        TextView pauseText = (TextView)(this.getView().findViewById(R.id.pause_text));
-        pauseText.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                System.out.println("yay! touched");
-                return true;
-            }
-        });
-*/
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pause, container, false);
     }
-
 
 }
