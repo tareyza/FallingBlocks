@@ -1,5 +1,6 @@
 package com.jjapps.fallingblocks;
 
+import android.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +14,9 @@ public class Game extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_game);
+
+        getSupportFragmentManager().beginTransaction().show(getSupportFragmentManager().findFragmentById(R.id.pause_fragment)).commit();
+
     }
 
     @Override

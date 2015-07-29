@@ -12,10 +12,10 @@
         android:layout_height="match_parent">
     </fragment>
 
-    <fragment android:name="com.jjapps.fallingblocks.PlayFragment"
-        android:id="@+id/play_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </fragment>
+    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+        android:textSize="50dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:text="HELLO SIENEN LAND more random text to fill up stuff to make a background so i can test the translucent work or notte" />
 
 </RelativeLayout>

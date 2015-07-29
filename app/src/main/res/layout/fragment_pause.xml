@@ -1,10 +1,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.jjapps.fallingblocks.PauseFragment">
+    android:layout_height="match_parent" tools:context="com.jjapps.fallingblocks.PauseFragment"
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="This is a message that should be mostly translucent. Blah asdflaksjdf lawrhm aksdma sdktg nasdigashdoiwefksjdbg her gjsd gkjsdbg sdgkasd ksj gksjb gksdjb g"
+    <TextView android:id="@+id/pause_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="3"
+        android:textSize="@dimen/very_large_text"
         android:background="#33FFFFFF"/>
 
 </FrameLayout>
