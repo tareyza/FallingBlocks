@@ -4,6 +4,7 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="This is a message that should be mostly translucent. Blah asdflaksjdf lawrhm aksdma sdktg nasdigashdoiwefksjdbg her gjsd gkjsdbg sdgkasd ksj gksjb gksdjb g"
+        android:background="#33FFFFFF"/>
 
 </FrameLayout>
