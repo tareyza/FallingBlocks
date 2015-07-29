@@ -12,6 +12,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -28,21 +29,24 @@ public class Game extends ActionBarActivity {
         setContentView(R.layout.activity_game);
 
         FragmentManager fm = getFragmentManager();
-        addShowHideListener(R.id.button, fm.findFragmentById(R.id.pause_fragment));
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.hide(fm.findFragmentById(R.id.pause_fragment));
+        addShowHideListener(R.id.game_layout, fm.findFragmentById(R.id.pause_fragment));
     }
-   public void addShowHideListener(int buttonId, final Fragment fragment) {
-        final Button button = (Button)findViewById(buttonId);
-        button.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
+   public void addShowHideListener(int viewId, final Fragment fragment) {
+        final View view = findViewById(viewId);
+        view.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent e) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 if (fragment.isHidden()) {
                     ft.show(fragment);
-                    button.setText("Hide");
+                    System.out.println("fragment was shown");
                 } else {
                     ft.hide(fragment);
-                    button.setText("Show");
+                    System.out.println("fragment hidden");
                 }
                 ft.commit();
+                return true;
             }
         });
     }
