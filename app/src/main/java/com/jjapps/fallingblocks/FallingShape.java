@@ -60,7 +60,7 @@ public class FallingShape {
         return paint;
     }
 
-    public void setLocation(int x, int y){
+    public void setLocation(float x, float y){
         Matrix translate = new Matrix();
         translate.setTranslate(x - this.x, y - this.y);
         path.transform(translate);
@@ -68,7 +68,7 @@ public class FallingShape {
         this.y = y;
     }
 
-    public void setDimension(int width, int height){
+    public void setDimension(float width, float height){
         Matrix scale = new Matrix();
         scale.setScale(width / this.width, height / this.height);
         path.transform(scale);

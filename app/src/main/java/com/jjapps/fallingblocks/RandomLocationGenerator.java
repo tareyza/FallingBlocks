@@ -13,6 +13,6 @@ public class RandomLocationGenerator implements ShapeLocationGenerator{
 
     @Override
     public void locate(FallingShape shape) {
-        shape.setLocation((int)(Math.random() * width), 0);
+        shape.setLocation((int)(Math.random() * width - shape.getWidth() / 2), -shape.getHeight());
     }
 }

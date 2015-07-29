@@ -32,6 +32,7 @@ import java.util.List;
 public class Game extends ActionBarActivity {
 
     private static final String[] names = {"rect", "oval", "tri"};
+    private Point size;
     private List<FallingShape> shapes = new ArrayList<>();
     private ShapeFactory shapeFactory;
     private View view;
@@ -51,13 +52,20 @@ public class Game extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         view = new View(this.getApplicationContext()){
             @Override public void onDraw(Canvas canvas){
-                for(FallingShape shape : shapes){
+                for(int i = 0; i < shapes.size(); ++i){
+                    FallingShape shape = shapes.get(i);
                     shape.render(canvas);
+                    shape.setLocation(shape.getX(), shape.getY() + 10);
+                    if(shape.getY() > size.y){
+                        shapes.remove(i);
+                        --i;
+                        System.out.println("Shape destroyed");
+                    }
                 }
             }
         };
         Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
+        size = new Point();
         display.getSize(size);
         shapeFactory = new DefaultShapeFactory(size.x, size.y);
         setContentView(view);
@@ -93,6 +101,7 @@ public class Game extends ActionBarActivity {
             shapeCounter = 0;
             FallingShape shape = shapeFactory.getShapeByName(names[(int)(Math.random() * 3)]);
             shapes.add(shape);
+            System.out.println("Shape created");
         }
         view.invalidate();
     }
