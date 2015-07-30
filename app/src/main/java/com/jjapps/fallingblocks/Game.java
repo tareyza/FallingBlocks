@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Handler;
+import android.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
+import android.app.*;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -65,7 +66,7 @@ public class Game extends FragmentActivity {
             }
         };
         final FragmentManager fm;//error from using fragments comes from fragment manager not initializing, still needs to be solved
-        fm = getSupportFragmentManager();
+        fm = getSupportFragmentManager();//this line is correct, stupid android wants to force backwards compatibility -.- fuck you no
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
