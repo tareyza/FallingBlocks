@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Handler;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Display;
@@ -27,8 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Game extends ActionBarActivity {
-
+public class Game extends FragmentActivity {
     private static final String[] names = {"rect", "oval", "tri"};
     private Point size;
     private List<FallingShape> shapes = new ArrayList<>();
@@ -46,9 +46,11 @@ public class Game extends ActionBarActivity {
         }
     };
 
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        view = new View(this.getApplicationContext()){
+
+        view = new View(this){
             @Override public void onDraw(Canvas canvas){
                 for(int i = 0; i < shapes.size(); ++i){
                     FallingShape shape = shapes.get(i);
@@ -62,6 +64,19 @@ public class Game extends ActionBarActivity {
                 }
             }
         };
+        final FragmentManager fm;//error from using fragments comes from fragment manager not initializing, still needs to be solved
+        fm = getSupportFragmentManager();
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                System.out.println("touched");
+
+                fm.beginTransaction().add(R.id.game_layout, fm.findFragmentById(R.id.pause_fragment)).commit();
+                fm.findFragmentById(R.id.pause_fragment);
+                return true;
+            }
+        });
+
         Display display = getWindowManager().getDefaultDisplay();
         size = new Point();
         display.getSize(size);
@@ -104,3 +119,4 @@ public class Game extends ActionBarActivity {
         view.invalidate();
     }
 }
+
