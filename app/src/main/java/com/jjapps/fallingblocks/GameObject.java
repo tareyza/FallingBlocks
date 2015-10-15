@@ -16,12 +16,11 @@ public class GameObject implements IGameObject {
     private final IWorld world;
     private final List<IComponent> components;
 
-    private List<Point> points;
+    private Bounds bounds;
 
     public GameObject(@NonNull IWorld world) {
         this.world = world;
         components = new ArrayList<>();
-        points = new ArrayList<>();
     }
 
     @Override public void update() {
@@ -30,21 +29,20 @@ public class GameObject implements IGameObject {
         }
     }
 
+    @Override public Bounds getBounds(){
+        return bounds;
+    }
+
     @Override public IGameObject withComponent(@NonNull IComponent component) {
         this.components.add(component);
         return this;
     }
 
-    @Override public Iterator<Point> getPoints() {
-        return points.iterator();
-    }
-
-    @Override public GameObject withPoint(@NonNull Point point) {
-        this.points.add(point);
-        return this;
+    @Override public void setBounds(@Nullable Bounds bounds) {
+        this.bounds = bounds;
     }
 
     @Override public String toString() {
-        return "GameObject @{" + points + "} with components " + components;
+        return "GameObject @{" + bounds + "} with components " + components;
     }
 }

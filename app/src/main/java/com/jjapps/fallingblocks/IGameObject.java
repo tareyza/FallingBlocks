@@ -13,9 +13,9 @@ public interface IGameObject {
 
     void update();
 
-    Iterator<Point> getPoints();
+    Bounds getBounds();
 
-    IGameObject withPoint(@NonNull Point point);
+    void setBounds(@Nullable Bounds bounds);
 
     IGameObject withComponent(@NonNull IComponent component);
 }
