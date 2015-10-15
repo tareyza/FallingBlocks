@@ -1,10 +1,7 @@
 package com.jjapps.fallingblocks;
 
-import android.graphics.Point;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
-import java.util.Iterator;
 
 /**
  *
@@ -21,12 +18,12 @@ public class GameObjectDecorator implements IGameObject {
         object.update();
     }
 
-    @Override public Iterator<Point> getPoints() {
-        return object.getPoints();
+    @Override public Bounds getBounds() {
+        return object.getBounds();
     }
 
-    @Override public IGameObject withPoint(@NonNull Point point) {
-        return object.withPoint(point);
+    @Override public IGameObject withBounds(@Nullable Bounds bounds) {
+        return object.withBounds(bounds);
     }
 
     @Override public IGameObject withComponent(@NonNull IComponent component) {

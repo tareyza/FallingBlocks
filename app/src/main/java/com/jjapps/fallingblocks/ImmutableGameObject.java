@@ -1,6 +1,7 @@
 package com.jjapps.fallingblocks;
 
 import android.graphics.Point;
+import android.support.annotation.Nullable;
 import android.support.annotation.NonNull;
 
 /**
@@ -14,7 +15,7 @@ public class ImmutableGameObject extends GameObjectDecorator {
         super(object);
     }
 
-    @Override public IGameObject withPoint(@NonNull Point bounds) {
+    @Override public IGameObject withBounds(@Nullable Bounds bounds) {
         throw new UnsupportedOperationException("This Object, " + this + ", is immutable");
     }
 
