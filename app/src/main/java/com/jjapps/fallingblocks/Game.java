@@ -6,8 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.view.Display;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 
-public class Game extends FragmentActivity {
+public class Game extends FragmentActivity implements View.OnTouchListener{
 
     private static volatile Game instance;
     private Point size;
@@ -15,7 +17,9 @@ public class Game extends FragmentActivity {
     private Game() {
     }
 
-    public @NonNull Game getInstance() {
+    public
+    @NonNull
+    Game getInstance() {
         if (instance == null) {
             synchronized (Game.class) {
                 if (instance == null) {
@@ -26,14 +30,17 @@ public class Game extends FragmentActivity {
         return instance;
     }
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Display display = getWindowManager().getDefaultDisplay();
         this.size = new Point();
+
         display.getSize(size);
     }
 
-    @Override public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
@@ -50,4 +57,11 @@ public class Game extends FragmentActivity {
     public double getScreenHeight() {
         return size.y;
     }
+
+
+    public boolean onTouch(View v, MotionEvent event) {
+
+return true;
+    }
+
 }

@@ -9,6 +9,13 @@
 
     <view android:id="@+id/game"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/black"/>
+
+    <view android:id="@+id/pause"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:text="TEST, THIS IS PAUSE MENU, SHOULD BE TRANSLUCENT"/>
 
 </RelativeLayout>
