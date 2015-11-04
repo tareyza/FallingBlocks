@@ -35,8 +35,8 @@ public class Game extends FragmentActivity implements View.OnTouchListener{
         super.onCreate(savedInstanceState);
         Display display = getWindowManager().getDefaultDisplay();
         this.size = new Point();
-
-        display.getSize(size);
+        findViewById(R.id.game).setVisibility(View.INVISIBLE);
+        findViewById(R.id.pause).setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -60,8 +60,8 @@ public class Game extends FragmentActivity implements View.OnTouchListener{
 
 
     public boolean onTouch(View v, MotionEvent event) {
-
-return true;
+        findViewById(R.id.game).setVisibility(View.VISIBLE);
+        return true;
     }
 
 }
